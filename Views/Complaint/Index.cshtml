@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ReportManagement.Models.Complaint>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-secondary"> LIST OF REPORTS</h2>
+
+        </div>
+        <div class="col-6">
+            <a asp-action="Upsert" class="btn text-white" style="background-color:#e7ab3c">
+                <i class="fas fa-plus"></i> &nbsp; Create New Report
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+<br />
+<br />
+@if (Model.Count() > 0)
+{
+
+    <table class="table table-hover" style="width:100%">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">
+                    Title Of Complaint
+                </th>
+                <th scope="col">
+                    Location Scope
+                </th>
+                <th scope="col">
+                    Category
+                </th>
+                <th scope="col">
+                    Action
+                </th>
+                <th scope="col">
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+            <tr>
+                <th scope="row">@obj.Id</th>
+                <td width="40%">@obj.Name</td>
+                <td width="20%">@obj.Location</td>
+                <td width="20%">@obj.Category.Name</td>
+                @*                <td width="30%"></td>*@
+
+                <td class="text-center">
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-route-Id="@obj.Id" asp-action="Upsert" class="btn mx-2" style="background-color:#e7ab3c">
+                            <i class="fas fa-edit">Edit</i>
+                        </a>
+                        <a asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
+                            <i class="fas fa-trash-alt">Delete</i>
+                        </a>
+                    </div>
+
+                </td>
+                <td width="20%" style="margin-left: 20px;">Submitted</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Event exists.</p>
+
+}

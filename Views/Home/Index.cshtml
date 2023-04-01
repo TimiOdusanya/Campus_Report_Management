@@ -1,0 +1,181 @@
+﻿@model ReportManagement.Models.ViewModels.HomeVM
+
+<body id="top">
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <h2>CAMPUS FIX</h2>
+            <p>A web app to fix <a href="http://templated.co">CAMPUS ISSUES</a></p>
+            <ul class="actions">
+                <li><a id="register" asp-area="Identity" asp-page="/Account/Register" class="button big special">Sign Up</a></li>
+                <li><a href="#two" class="button big alt">Learn More</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- One -->
+    <section id="one" class="wrapper style1">
+        <header class="major">
+            <h2>Report issues, safety concerns and more.</h2>
+            <p>Fast and easy solution to your complaints</p>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-area-chart major"></i>
+                        <h3>see it</h3>
+                        <p>You see an issue that needs solving on campus</p>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="special box">
+                        s
+                        <i class="icon fa-refresh major"></i>
+                        <h3>Snap it</h3>
+                        <p>Take a picture with your mobile device and enter necessary info </p>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="special box">
+                        <i class="icon fa-cog major"></i>
+                        <h3>fix it</h3>
+                        <p>Report your complaint and wait for the team to act on it</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two -->
+    <section id="two" class="wrapper style2">
+        <header class="major">
+            <h2>Are you looking for more about this service?</h2>
+            <p>Do not worry, you will find everything you need to know</p>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="6u">
+                    <section class="special">
+                        <a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
+                        <h3>About This Solution</h3>
+                        <p>We understand that the campus is a bustling community with many different issues and challenges. That's why we've created a platform to help you quickly and easily report and track all the problems you encounter on campus.</p>
+                        <ul class="actions">
+                            <li><a href="#banner" class="button alt">Learn More</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="6u">
+                    <section class="special">
+                        <a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+                        <h3>What We Offer</h3>
+                        <p>With Camp Fix, you can report issues, such as maintenance requests, safety concerns, and more, and get real-time updates on their status. Our goal is to provide you with a convenient and reliable way to get the problems you face on campus resolved quickly and efficiently.</p>
+                        <ul class="actions">
+                            <li><a href="#banner" class="button alt">Learn More</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*<div>
+            <div class="row">
+                @foreach (var prod in Model.Complaints)
+                {
+                    <div class="slider-wrap">
+                        <div id="card-slider" class="slider">
+                            <div class="slider-item">
+                                <div class="animation-card_image">
+                                    <img src="@WC.ImagePath@prod.Image" alt="">
+                                </div>
+                                <div class="animation-card_content">
+                                    <h4 class="animation-card_content_title title-2">@prod.Name</h4>
+                                    <p class="animation-card_content_description p-2">@prod.ShortDesc</p>
+                                    <p class="animation-card_content_city">@prod.Location</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <partial name="_IndividualProductCard" model="prod" />
+                }
+            </div>
+        </div>*@
+
+    <!-- Three -->
+    <section id="three" class="wrapper style1">
+        <div class="container">
+            <div class="row">
+                <div class="8u">
+                    <section>
+                        <h2>LATEST REPORT</h2>
+                        <a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+                        <p>We've created a platform to help you quickly and easily report and track all the problems you encounter on campus.</p>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section>
+                        <h3>Improper Refuse Disposal</h3>
+                        <p> There has been dumping of refuse at COLPHYS</p>
+                        <ul class="actions">
+                            <li><a href="#" class="button alt">Learn More</a></li>
+                        </ul>
+                    </section>
+                    <hr />
+                    <section>
+                        <h3>Services This Solution Contains</h3>
+                        <ul class="alt">
+                            <li><a href="#">Maintenance issues </a></li>
+                            <li><a href="#">Security problems </a></li>
+                            <li><a href="#">Accessibility problems /a></li>
+                            <li><a href="#">Infrastructure problems </a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <section>
+        <h3>FREQUENTLY ASKED QUESTIONS</h3>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                       How do I navigate the system?
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Explain the complaint Process?
+    
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        How do I navigate the report?
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+</body>

@@ -1,0 +1,250 @@
+﻿@model ReportManagement.Models.ViewModels.ComplaintVM
+
+@{
+    var title = "Create Complaint";
+}
+
+
+
+<form method="post" enctype="multipart/form-data" style="margin-left: 20%;">
+    @if (Model.Complaint.Id != 0)
+    {
+        title = "Edit Complaint";
+        <input asp-for="Complaint.Id" hidden />
+    }
+
+
+    <div class="border p-3">
+
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@title</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Complaint.Name" class="form-control" />
+                        <span asp-validation-for="Complaint.Name" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Complaint.Description" class="form-control summernote"></textarea>
+                        <span asp-validation-for="Complaint.Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.Date"></label>
+                    </div>
+                    <div class="col-8">
+                        @*<a onclick="dateNow()" type="button" class="btn btn-info">GET DATE</a>*@
+                        @*<input asp-for="Complaint.Date" class="form-control" />*@
+                        <input type="date" min="2023-02-06" max="2024-12-31" asp-for="Complaint.Date" id="date" />
+                        <span asp-validation-for="Complaint.Date" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.Time"></label>
+                    </div>
+                    <div class="col-8">
+                        <a onclick="timeNow(test1)" type="button" class="btn btn-info">GET TIME</a>
+                        @*<input id="test1" type="time" value="" />*@
+                        <input type="time" asp-for="Complaint.Time" id="test1" class="form-control"  style="width: 70px;"disabled/>
+                        <span asp-validation-for="Complaint.Time" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label @*asp-for="Complaint.Location"*@>Select Nearest Location</label>
+                    </div>
+                    <div class="col-8">
+                        @*<input asp-for="Complaint.Location" class="form-control" />*@
+                        <select asp-for="Complaint.Location" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>COLPHYS</option>
+                            <option>COLBIOS</option>
+                            <option>COLENG</option>
+                            <option>COLPLANT</option>
+                            <option>COLAMRUD</option>
+                            <option>SUB</option>
+
+                        </select>
+                        <span asp-validation-for="Complaint.Location" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        Upload Video / Image
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.CategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Complaint.CategoryId" asp-items="@Model.CategorySelectList" class="form-control">
+                            <option disabled selected>--Select Category--</option>
+                        </select>
+                        <span asp-validation-for="Complaint.CategoryId" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Complaint.Location"></label>
+                    </div>
+                    <button class="btn btn-info" style="padding-left: -20px;" onclick="getLocation()">Get location</button>
+                    <br />
+                    @*<p id="demo"></p>*@
+                    <div class="col-8">
+                        <div asp-for="Complaint.Location" id="demo"/></div>
+                        <span asp-validation-for="Complaint.Location" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            @if (Model.Complaint.Id != 0)
+                            {
+                                //Update
+                                <input type="submit" class="btn btn-info w-100" value="Update" />
+
+                            }
+                            else
+                            {
+                                //Create
+                                <input type="submit" onclick="return validateInput()" class="btn btn-info w-100" id="validateInput" value="Create" />
+
+                            }
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out"></i>Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+                @if (Model.Complaint.Id != 0)
+                {
+                    <img src="@WC.ImagePath@Model.Complaint.Image" width="100%" style="border-radius: 5px; border:1px solid #bbb" />
+                }
+
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script>
+        function timeNow(i) {
+            var d = new Date(),
+                h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
+                m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+            i.value = h + ':' + m;
+        }
+
+
+        function dateNow() {
+            let today = new Date().toLocaleDateString()
+            document.getElementById("date").innerHTML = today;
+            console.log(document.getElementById("date").innerHTML)
+        }
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 250
+            });
+        });
+
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Error!',
+                    'Please upload an Image',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Succcess!',
+                    'Thank you for your information, oomplaint will be solved shortly ',
+                    'success'
+                )
+                return false;
+            }
+            return true;
+    </script>
+
+}

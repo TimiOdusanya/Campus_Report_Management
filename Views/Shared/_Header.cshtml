@@ -1,0 +1,25 @@
+﻿@*@using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
+    @using ChurchProject.Utility
+*@
+
+             
+
+
+<!-- Header -->
+<header id="header" class="skel-layers-fixed">
+    
+    <h1><a href="#">Ca<img src="~/images/logo.png" style="width:60px; height:30px" />pus Fix</a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="" asp-controller="Complaint" asp-action="Upsert">Report an Issue</a></li>
+            @*<li><a href="left-sidebar.html">Left Sidebar</a></li>
+        <li><a href="right-sidebar.html">Right Sidebar</a></li>*@
+            <li><a href="no-sidebar.html">My Issues</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="DataTracker">Statistics</a></li>
+            <li><partial name="_LoginPartial" /></li>
+            <li><a href="#footer" class="special">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
